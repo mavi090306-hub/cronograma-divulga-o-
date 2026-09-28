@@ -1,1 +1,1 @@
-# cronograma-divulga-o-
+# cronograma-divulgação
