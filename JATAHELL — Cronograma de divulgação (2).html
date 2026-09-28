@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JATAHELL — Cronograma de divulgação</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #070404;
+    --ink: #EFE7E1;
+    --muted: #8C7A72;
+    --red: #E12A21;
+    --red-dim: rgba(225,42,33,0.14);
+    --maroon: #5A1512;
+    --line: #241512;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  html { scroll-padding-top: 56px; scroll-behavior: smooth; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    font-variant-numeric: tabular-nums;
+  }
+  h2, .display { font-family: 'Anton', sans-serif; font-weight: 400; margin: 0; letter-spacing: 0.01em; text-transform: uppercase; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  .wrap { max-width: 700px; margin: 0 auto; padding: 0 24px 100px; }
+
+  /* HERO */
+  .hero { position: relative; background: var(--bg); overflow: hidden; }
+  .hero .tile-row { white-space: nowrap; overflow: hidden; font-family: 'Anton', sans-serif; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1; }
+  .hero .r1, .hero .r7 { font-size: clamp(20px,5vw,34px); color: var(--maroon); opacity: 0.28; }
+  .hero .r2, .hero .r6 { font-size: clamp(22px,5.5vw,38px); color: var(--maroon); opacity: 0.55; }
+  .hero .r3, .hero .r5 { font-size: clamp(26px,6.5vw,44px); color: var(--red); opacity: 0.65; }
+  .hero .r4 { font-size: clamp(30px,7.5vw,50px); color: var(--red); opacity: 1; }
+
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, var(--bg) 0%, transparent 22%, transparent 78%, var(--bg) 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-card {
+    background: rgba(7,4,4,0.82);
+    border: 1px solid var(--line);
+    padding: 22px 32px;
+    text-align: center;
+    max-width: 90%;
+  }
+  .hero-card .label { font-size: 11px; color: var(--red); font-family: 'IBM Plex Mono', monospace; }
+  .hero-card h1 { font-family: 'Anton', sans-serif; font-size: clamp(30px,8vw,44px); color: var(--ink); text-transform: uppercase; margin-top: 6px; }
+  .hero-card .tag { color: var(--muted); font-size: 13.5px; margin-top: 6px; }
+
+  header.info { padding: 28px 24px 0; }
+  header.info .inner { max-width: 700px; margin: 0 auto; padding-bottom: 32px; border-bottom: 1px solid var(--line); }
+
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); }
+  .stat-row .stat { padding: 16px 18px; border-right: 1px solid var(--line); }
+  .stat-row .stat:last-child { border-right: none; }
+  .stat-row .stat .k { font-size: 11px; color: var(--muted); }
+  .stat-row .stat .v { font-size: 16px; font-weight: 600; margin-top: 4px; }
+
+  .countdown-box {
+    margin-top: 14px; border: 1px solid var(--red); background: var(--red-dim);
+    padding: 14px 18px; display: flex; align-items: baseline; gap: 12px;
+  }
+  .countdown-box .n { font-family: 'Anton', sans-serif; font-size: 30px; color: var(--red); }
+  .countdown-box .l { font-size: 13px; color: var(--muted); }
+
+  .rule-note { margin-top: 14px; padding: 14px 18px; border: 1px solid var(--line); display: flex; gap: 14px; flex-wrap: wrap; }
+  .rule-note .rn-label { flex: 0 0 auto; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--red); padding-top: 2px; }
+  .rule-note .rn-text { color: var(--muted); font-size: 13.5px; max-width: 48ch; }
+
+  /* PROGRESS */
+  .progress-box { margin-top: 14px; border: 1px solid var(--line); padding: 14px 18px; }
+  .progress-box .pb-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .progress-box .pb-label { font-size: 12px; font-family: 'IBM Plex Mono', monospace; color: var(--muted); }
+  .progress-box .pb-count { font-size: 13px; color: var(--ink); font-weight: 600; }
+  .progress-box .pb-track { margin-top: 10px; height: 6px; background: var(--line); position: relative; overflow: hidden; }
+  .progress-box .pb-fill { position: absolute; inset: 0 auto 0 0; width: 0%; background: var(--red); transition: width 0.25s ease; }
+  .reset-btn { margin-top: 10px; background: none; border: 1px solid var(--line); color: var(--muted); font-size: 12px; font-family: 'Inter', sans-serif; padding: 6px 12px; cursor: pointer; }
+  .reset-btn:hover { color: var(--red); border-color: var(--red); }
+
+  .sec-progress { font-size: 12px; color: var(--muted); font-family: 'IBM Plex Mono', monospace; margin-left: auto; }
+
+  .row-list li.task, .reel-list li.task { align-items: flex-start; cursor: pointer; }
+  .row-list li.task input, .reel-list li.task input {
+    appearance: none; -webkit-appearance: none;
+    width: 16px; height: 16px; flex: 0 0 16px;
+    border: 1px solid var(--muted); background: transparent;
+    margin-top: 2px; cursor: pointer; position: relative;
+  }
+  .row-list li.task input:checked, .reel-list li.task input:checked { background: var(--red); border-color: var(--red); }
+  .row-list li.task input:checked::after, .reel-list li.task input:checked::after {
+    content: ""; position: absolute; left: 4px; top: 1px; width: 4px; height: 8px;
+    border: solid var(--bg); border-width: 0 2px 2px 0; transform: rotate(45deg);
+  }
+  .row-list li.task.done .what b, .reel-list li.task.done p { color: var(--muted); text-decoration: line-through; }
+  .row-list li.task.done .what span, .reel-list li.task.done .tip { text-decoration: line-through; }
+
+  /* NAV */
+  nav.idx {
+    position: sticky; top: 0; z-index: 5;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  nav.idx .inner { max-width: 700px; margin: 0 auto; padding: 0 24px; display: flex; gap: 24px; }
+  nav.idx a {
+    display: inline-block; padding: 14px 0;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    border-bottom: 2px solid transparent;
+  }
+  nav.idx a:hover { color: var(--ink); border-bottom-color: var(--red); }
+
+  /* SECTIONS */
+  section { padding: 48px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+  .section-head { display: flex; gap: 14px; align-items: baseline; margin-bottom: 6px; }
+  .section-num { font-family: 'Anton', sans-serif; font-size: 20px; color: var(--red); }
+  .section-head h2 { font-size: 21px; }
+  .dates { color: var(--muted); font-size: 13px; margin-top: 4px; font-family: 'IBM Plex Mono', monospace; }
+  .goal { color: var(--ink); font-size: 15px; margin-top: 14px; max-width: 56ch; }
+
+  .group-label { font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); margin: 32px 0 4px; }
+
+  .row-list { list-style: none; margin: 0; padding: 0; }
+  .row-list li {
+    display: flex; gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 14.5px;
+  }
+  .row-list li:last-child { border-bottom: none; }
+  .row-list .when { flex: 0 0 82px; color: var(--red); font-size: 12.5px; font-family: 'IBM Plex Mono', monospace; padding-top: 2px; }
+  .row-list .what b { color: var(--ink); font-weight: 600; }
+  .row-list .what span { display: block; color: var(--muted); font-size: 13px; margin-top: 2px; }
+
+  .reel-list { list-style: none; margin: 0; padding: 0; }
+  .reel-list li { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .reel-list li:last-child { border-bottom: none; }
+  .reel-list .n { flex: 0 0 26px; font-family: 'IBM Plex Mono', monospace; color: var(--muted); font-size: 13px; padding-top: 1px; }
+  .reel-list p { margin: 0; font-size: 14.5px; color: var(--ink); font-weight: 500; }
+  .reel-list .tip { font-size: 13px; color: var(--muted); margin-top: 3px; }
+
+  dl.spec { margin: 20px 0 0; }
+  dl.spec .item { display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+  dl.spec .item:last-child { border-bottom: none; }
+  dl.spec dt { flex: 0 0 140px; color: var(--muted); font-size: 12.5px; font-family: 'IBM Plex Mono', monospace; }
+  dl.spec dd { margin: 0; color: var(--ink); }
+
+  footer { text-align: center; padding: 40px 24px; color: var(--muted); font-size: 13px; }
+  footer .brand { font-family: 'Anton', sans-serif; color: var(--red); font-size: 16px; letter-spacing: 0.02em; }
+
+  @media (max-width: 460px) {
+    .row-list li, dl.spec .item { flex-direction: column; gap: 4px; }
+    .row-list .when { flex: none; }
+    dl.spec dt { flex: none; }
+    .stat-row { grid-template-columns: 1fr; }
+    .stat-row .stat { border-right: none; border-bottom: 1px solid var(--line); }
+    .stat-row .stat:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="tile-row r1">JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL</div>
+  <div class="tile-row r2">JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL</div>
+  <div class="tile-row r3">JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL</div>
+  <div class="tile-row r4">JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL</div>
+  <div class="tile-row r5">JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL</div>
+  <div class="tile-row r6">JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL</div>
+  <div class="tile-row r7">JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL JATAHELL</div>
+  <div class="hero-overlay">
+    <div class="hero-card">
+      <div class="label">CRONOGRAMA DE DIVULGAÇÃO</div>
+      <h1>JATAHELL</h1>
+      <div class="tag">"doce como mel, perigoso como o inferno"</div>
+    </div>
+  </div>
+</div>
+
+<header class="info">
+  <div class="inner">
+    <div class="stat-row">
+      <div class="stat"><div class="k">Data da festa</div><div class="v">17 de outubro</div></div>
+      <div class="stat"><div class="k">Local</div><div class="v">Jataí — GO</div></div>
+      <div class="stat"><div class="k">Janela de campanha</div><div class="v">28 set → 17 out</div></div>
+    </div>
+
+    <div class="countdown-box">
+      <span class="n" id="days">--</span>
+      <span class="l">dias até a festa</span>
+    </div>
+
+    <div class="rule-note">
+      <span class="rn-label">Regra fixa</span>
+      <span class="rn-text">Pelo menos 1 Story por dia, todos os dias, do dia 28/09 até 17/10 — sem exceção. É o que mantém o perfil "vivo" entre uma ação grande e outra.</span>
+    </div>
+
+    <div class="progress-box">
+      <div class="pb-top">
+        <span class="pb-label">Progresso geral</span>
+        <span class="pb-count" id="pb-count">0 / 0 concluídas</span>
+      </div>
+      <div class="pb-track"><div class="pb-fill" id="pb-fill"></div></div>
+      <button class="reset-btn" id="reset-btn" type="button">Resetar progresso</button>
+    </div>
+  </div>
+</header>
+
+<nav class="idx">
+  <div class="inner">
+    <a href="#semana1">Semana 1</a>
+    <a href="#semana2">Semana 2</a>
+    <a href="#semana3">Semana 3</a>
+    <a href="#diad">Dia D</a>
+    <a href="#sorteio">Sorteio</a>
+    <a href="#influencers">Influenciadores</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<section id="semana1">
+  <div class="section-head"><span class="section-num">01</span><h2>Semana 1 — fundação</h2></div>
+  <div class="dates">28.09 → 04.10</div>
+  <p class="goal">Nada foi feito ainda, então essa semana concentra tudo que precisa sair do papel de uma vez: revelar o 3º DJ, lançar o sorteio e abrir os convites para influenciadores.</p>
+
+  <div class="group-label">Ações</div>
+  <ul class="row-list">
+    <li><span class="when">Seg 28/09</span><span class="what"><b>Revelar o 3º DJ</b><span>Post + reels de teaser/reveal — fecha o time completo hoje mesmo</span></span></li>
+    <li><span class="when">Ter 29/09</span><span class="what"><b>Lançar o sorteio oficialmente</b><span>Post fixado explicando as regras (1 ingresso + 1 acompanhante)</span></span></li>
+    <li><span class="when">Qua 30/09</span><span class="what"><b>Enviar a primeira leva de convites aos influenciadores</b><span>DM personalizada, nunca uma mensagem igual para todos</span></span></li>
+    <li><span class="when">Qui–Sex</span><span class="what"><b>Ativar sticker de contagem regressiva</b><span>Fixar nos Stories em destaque para quem entra no perfil depois</span></span></li>
+    <li><span class="when">Sáb–Dom</span><span class="what"><b>Reforçar o sorteio + balanço da semana</b><span>Ver participação e retorno dos influenciadores</span></span></li>
+  </ul>
+
+  <div class="group-label">Reels da semana</div>
+  <ul class="reel-list">
+    <li><span class="n">01</span><div><p>Bastidores da montagem/decoração do local</p><div class="tip">Câmera na mão, sem roteiro — mostra o "antes" da festa</div></div></li>
+    <li><span class="n">02</span><div><p>Reveal do 3º DJ com efeito de suspense</p><div class="tip">Silhueta, contagem, nome só no final</div></div></li>
+    <li><span class="n">03</span><div><p>Anúncio do sorteio explicando as regras direto pra câmera</p><div class="tip">Call to action claro no final</div></div></li>
+    <li><span class="n">04</span><div><p>Os 3 DJs juntos apresentando o line-up completo</p><div class="tip">Pode ser tela dividida com fotos de cada um</div></div></li>
+  </ul>
+</section>
+
+<section id="semana2">
+  <div class="section-head"><span class="section-num">02</span><h2>Semana 2 — prova social</h2></div>
+  <div class="dates">05.10 → 11.10</div>
+  <p class="goal">Mostrar que a festa tem movimento de verdade — gente confirmando presença, influenciadores falando, open aparecendo em vídeo. Sorteio se encerra nesta semana.</p>
+
+  <div class="group-label">Ações</div>
+  <ul class="row-list">
+    <li><span class="when">Seg 05/10</span><span class="what"><b>Repostar stories dos influenciadores confirmados</b><span>Sempre que alguém postar</span></span></li>
+    <li><span class="when">Ter 06/10</span><span class="what"><b>Enquete nos Stories</b><span>"Qual fantasia você vai usar?"</span></span></li>
+    <li><span class="when">Qua 07/10</span><span class="what"><b>Follow-up com influenciadores sem resposta</b><span>Mensagem mais direta, com prazo</span></span></li>
+    <li><span class="when">Qui 08/10</span><span class="what"><b>Encerrar o sorteio</b><span>Prazo final às 23h59</span></span></li>
+    <li><span class="when">Sex 09/10</span><span class="what"><b>Anunciar o resultado do sorteio</b><span>Ao vivo ou vídeo gravado no ato</span></span></li>
+    <li><span class="when">Sáb–Dom</span><span class="what"><b>Anunciar último lote de ingresso</b><span>Se aplicável — cria urgência real</span></span></li>
+  </ul>
+
+  <div class="group-label">Reels da semana</div>
+  <ul class="reel-list">
+    <li><span class="n">05</span><div><p>Mostrar o open: caixas/geladeira cheia de Skol Beats e Heineken</p><div class="tip">Vídeo curto de distribuição/organização das bebidas, sem precisar de preparo</div></div></li>
+    <li><span class="n">06</span><div><p>Pedir para os DJs gravarem perguntando "o que não pode ficar de fora do set"</p><div class="tip">Conteúdo interativo: pedir pros seguidores responderem nos comentários qual música não pode faltar</div></div></li>
+    <li><span class="n">07</span><div><p>Inspiração de fantasias/looks para o tema</p><div class="tip">Referências de imagem com voz explicando o tema</div></div></li>
+    <li><span class="n">08</span><div><p>Anúncio do ganhador do sorteio</p><div class="tip">Reação genuína aumenta o engajamento</div></div></li>
+  </ul>
+</section>
+
+<section id="semana3">
+  <div class="section-head"><span class="section-num">03</span><h2>Semana 3 — urgência</h2></div>
+  <div class="dates">12.10 → 16.10</div>
+  <p class="goal">Virar a chave para urgência — quem ainda não comprou precisa sentir que está ficando de fora.</p>
+
+  <div class="group-label">Ações</div>
+  <ul class="row-list">
+    <li><span class="when">Seg 12/10</span><span class="what"><b>Contagem regressiva diária nos Stories</b><span>Sticker todos os dias até o dia 17</span></span></li>
+    <li><span class="when">Ter 13/10</span><span class="what"><b>Testar som e luz no local</b><span>Ótimo momento para bastidor profissional</span></span></li>
+    <li><span class="when">Qua 14/10</span><span class="what"><b>Divulgar "ingressos limitados"</b><span>Se aplicável — mostrar quantidade restante</span></span></li>
+    <li><span class="when">Qui 15/10</span><span class="what"><b>Conteúdo dos influenciadores vai ao ar</b><span>Reforçar com repost em destaque</span></span></li>
+    <li><span class="when">Sex 16/10</span><span class="what"><b>Preparar roteiro do dia da festa</b><span>Decidir o que gravar no Dia D com antecedência</span></span></li>
+  </ul>
+
+  <div class="group-label">Reels da semana</div>
+  <ul class="reel-list">
+    <li><span class="n">09</span><div><p>"Faltam X dias" em formato de vídeo</p><div class="tip">Repetir o formato a cada 2-3 dias trocando o número</div></div></li>
+    <li><span class="n">10</span><div><p>Guia rápido: local, horário, dress code, o que levar</p><div class="tip">Formato lista, direto ao ponto, fácil de salvar</div></div></li>
+    <li><span class="n">11</span><div><p>Bastidor do teste de som/luz no local</p><div class="tip">Mostra que a produção é profissional</div></div></li>
+    <li><span class="n">12</span><div><p>"Últimos dias" com depoimento de quem já vai</p><div class="tip">Prova social é o gatilho mais forte aqui</div></div></li>
+  </ul>
+</section>
+
+<section id="diad">
+  <div class="section-head"><span class="section-num">04</span><h2>Reta final — Dia D</h2></div>
+  <div class="dates">16.10 → 17.10</div>
+  <p class="goal">Capturar quem decide de última hora e criar o registro que vira conteúdo para a próxima edição.</p>
+  <ul class="row-list">
+    <li><span class="when">16/10</span><span class="what"><b>Post/reels "amanhã é o dia"</b><span>Reforço final de local, horário e ingresso de última hora</span></span></li>
+    <li><span class="when">17/10 dia</span><span class="what"><b>Stories dos bastidores finais de montagem</b><span>Chegada de equipe, estrutura pronta</span></span></li>
+    <li><span class="when">17/10 noite</span><span class="what"><b>Stories ao vivo da abertura e chegada do público</b><span>Esse material vira o teaser da próxima edição</span></span></li>
+  </ul>
+</section>
+
+<section id="sorteio">
+  <div class="section-head"><span class="section-num">05</span><h2>Sorteio</h2></div>
+  <p class="goal">1 ingresso + 1 acompanhante, pensado para ganhar seguidores e gerar compartilhamento orgânico.</p>
+  <dl class="spec">
+    <div class="item"><dt>Regras</dt><dd>Seguir o perfil, curtir o post e marcar 2 amigos nos comentários</dd></div>
+    <div class="item"><dt>Bônus</dt><dd>Compartilhar o post nos Stories marcando o perfil</dd></div>
+    <div class="item"><dt>Início</dt><dd>29/09 — junto com o post fixado com as regras</dd></div>
+    <div class="item"><dt>Encerramento</dt><dd>08/10 às 23h59</dd></div>
+    <div class="item"><dt>Resultado</dt><dd>09/10 — ao vivo ou vídeo gravado no ato</dd></div>
+    <div class="item"><dt>Divulgação</dt><dd>Post fixado + destaque nos Stories + lembrete a cada 2-3 dias</dd></div>
+  </dl>
+</section>
+
+<section id="influencers">
+  <div class="section-head"><span class="section-num">06</span><h2>Convites para influenciadores</h2></div>
+  <dl class="spec">
+    <div class="item"><dt>Perfil ideal</dt><dd>Micro-influenciadores de Jataí e região, 5 mil a 30 mil seguidores, lifestyle/vida noturna, público 18-27</dd></div>
+    <div class="item"><dt>Oferta</dt><dd>2 entradas cortesia por 2-3 Stories e 1 post ou Reels de divulgação</dd></div>
+    <div class="item"><dt>Como abordar</dt><dd>DM personalizada mencionando o perfil pelo nome — nunca genérica</dd></div>
+    <div class="item"><dt>Envio</dt><dd>30/09 a 02/10, com follow-up até 07/10</dd></div>
+    <div class="item"><dt>Janela de conteúdo</dt><dd>Concentrado nas semanas 2 e 3, quando o perfil já tem mais movimento</dd></div>
+  </dl>
+</section>
+
+</div>
+
+<footer>
+  <div class="brand">JATAHELL</div>
+  Cronograma de divulgação · 28 set → 17 out
+</footer>
+
+<script>
+  (function () {
+    var target = new Date('2026-10-17T22:00:00-03:00').getTime();
+    var el = document.getElementById('days');
+    function updateCountdown() {
+      var days = Math.max(0, Math.ceil((target - Date.now()) / 86400000));
+      el.textContent = days;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 3600000);
+  })();
+
+  (function () {
+    var STORAGE_KEY = 'jatahell_cronograma_progress_v1';
+    var state = {};
+    try {
+      var saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) state = JSON.parse(saved) || {};
+    } catch (e) { state = {}; }
+
+    function save() {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+    }
+
+    var items = Array.prototype.slice.call(document.querySelectorAll('.row-list li, .reel-list li'));
+
+    items.forEach(function (li, idx) {
+      var id = 'item-' + idx;
+      li.classList.add('task');
+      var checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.checked = !!state[id];
+      if (checkbox.checked) li.classList.add('done');
+      li.insertBefore(checkbox, li.firstChild);
+
+      function toggle() {
+        checkbox.checked = !checkbox.checked;
+        state[id] = checkbox.checked;
+        li.classList.toggle('done', checkbox.checked);
+        save();
+        updateProgress();
+      }
+
+      checkbox.addEventListener('click', function (e) { e.stopPropagation(); });
+      checkbox.addEventListener('change', function () {
+        state[id] = checkbox.checked;
+        li.classList.toggle('done', checkbox.checked);
+        save();
+        updateProgress();
+      });
+      li.addEventListener('click', function (e) {
+        if (e.target === checkbox) return;
+        toggle();
+      });
+    });
+
+    var sections = Array.prototype.slice.call(document.querySelectorAll('section'));
+    sections.forEach(function (sec) {
+      var head = sec.querySelector('.section-head');
+      if (!head) return;
+      var span = document.createElement('span');
+      span.className = 'sec-progress';
+      head.appendChild(span);
+      sec.__progressEl = span;
+    });
+
+    var pbCount = document.getElementById('pb-count');
+    var pbFill = document.getElementById('pb-fill');
+
+    function updateProgress() {
+      var total = items.length, done = 0;
+      items.forEach(function (li) { if (li.classList.contains('done')) done++; });
+      pbCount.textContent = done + ' / ' + total + ' concluídas';
+      pbFill.style.width = (total ? (done / total * 100) : 0) + '%';
+
+      sections.forEach(function (sec) {
+        if (!sec.__progressEl) return;
+        var secItems = sec.querySelectorAll('.row-list li, .reel-list li');
+        if (!secItems.length) { sec.__progressEl.textContent = ''; return; }
+        var secDone = 0;
+        secItems.forEach(function (li) { if (li.classList.contains('done')) secDone++; });
+        sec.__progressEl.textContent = secDone + '/' + secItems.length;
+      });
+    }
+
+    updateProgress();
+
+    document.getElementById('reset-btn').addEventListener('click', function () {
+      state = {};
+      save();
+      items.forEach(function (li) {
+        li.classList.remove('done');
+        var cb = li.querySelector('input[type=checkbox]');
+        if (cb) cb.checked = false;
+      });
+      updateProgress();
+    });
+  })();
+</script>
+
+</body>
+</html>
